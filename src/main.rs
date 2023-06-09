@@ -148,19 +148,6 @@ fn get_vertical_blank_duration(refresh_rate: u32) -> Duration {
     vbi_duration - Duration::from_micros(100)
 }
 
-pub fn convert_to_rgba(data: Vec<u8>) -> Vec<u8> {
-    let mut rgba_data = Vec::with_capacity(data.len() * 4);
-
-    for value in data {
-        rgba_data.push(value);
-        rgba_data.push(value);
-        rgba_data.push(value);
-        rgba_data.push(0);
-    }
-
-    rgba_data
-}
-
 fn is_movement_keys_pressed() -> bool {
     (unsafe { GetKeyState(b'A' as i32) } as i32 & 0x8000) == 0
         && (unsafe { GetKeyState(b'W' as i32) } as i32 & 0x8000) == 0
@@ -172,7 +159,7 @@ fn is_shift_key_pressed() -> bool {
     (unsafe { GetKeyState(VK_SHIFT) } as i32 & 0x8000) != 0
 }
 
-pub fn send_left_click() {
+fn send_left_click() {
     unsafe {
         let mut cursor_pos: POINT = POINT { x: 0, y: 0 };
         GetCursorPos(&mut cursor_pos);
