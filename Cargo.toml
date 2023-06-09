@@ -1,0 +1,8 @@
+[package]
+name = "color_trigger"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+winapi = { version = "0.3", features = ["windef", "winuser"] }
+ctrlc = "3.4.0"
