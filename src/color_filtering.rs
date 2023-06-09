@@ -34,7 +34,7 @@ pub fn threshold_white(image_data: &[u8], target_color: (f32, f32, f32)) -> Vec<
 
     while index + 4 <= image_data.len() {
         let (h, s, v) = rgb_to_hsv(image_data[index+2], image_data[index+1], image_data[index]);
-        let similarity = calculate_hsv_similarity(target_color, (h,s,v), 2.0);
+        let similarity = calculate_hsv_similarity(target_color, (h,s,v), 0.0);
         new_image_data.push((similarity * 255.0) as u8);
 
         index += 4;
